@@ -1,5 +1,12 @@
 import Link from "next/link";
-import Paper from "../../components/materials/Paper"
+
+import Paper from "@/components/materials/Paper";
+
+import Display from "@/components/typography/Display";
+import Heading from "@/components/typography/Heading";
+import Body from "@/components/typography/Body";
+import Label from "@/components/typography/Label";
+import Metadata from "@/components/typography/Metadata";
 
 const experiments = [
   {
@@ -42,7 +49,7 @@ const experiments = [
     title: "Typography",
     description: "Hierarchy and rhythm.",
     href: "/playground/typography",
-    status: "Planned",
+    status: "Complete",
   },
   {
     id: "007",
@@ -53,65 +60,87 @@ const experiments = [
   },
 ];
 
-
-
 export default function Playground() {
   return (
-    <main className="min-h-screen bg-[#F6F2EA] text-neutral-900">
-      <div className="mx-auto max-w-6xl px-12 py-20">
+    <Paper>
+      <main className="mx-auto max-w-6xl px-10 py-20">
 
-        <div className="mb-20">
-          <p className="text-xs uppercase tracking-[0.35em] text-neutral-500">
-            Arkau Digital Materials Lab
-          </p>
+        {/* Header */}
 
-          <h1 className="mt-6 text-6xl font-semibold tracking-tight">
-            PLAYGROUND
-          </h1>
+        <section className="mb-24">
 
-          <p className="mt-6 max-w-xl text-neutral-600 leading-relaxed">
-            A collection of ongoing interface experiments exploring material,
-            observation, motion, and interaction.
-          </p>
-        </div>
+          <Label>
+            ARKAU DIGITAL MATERIALS LAB
+          </Label>
 
-        <div className="border-t border-neutral-300">
+          <div className="mt-4 flex justify-between items-end">
+
+            <Display>
+              Playground
+            </Display>
+
+            <Metadata>
+              Edition 0.1
+            </Metadata>
+
+          </div>
+
+          <div className="mt-10 h-px bg-neutral-300" />
+
+          <div className="mt-8 max-w-xl">
+
+            <Body>
+              A growing collection of experiments exploring materials,
+              observation, interaction, and the digital language of Arkau.
+            </Body>
+
+          </div>
+
+        </section>
+
+        {/* Experiment List */}
+
+        <section>
 
           {experiments.map((experiment) => (
 
             <Link
               key={experiment.id}
               href={experiment.href}
-              className="group flex items-center justify-between border-b border-neutral-300 py-8 transition-all duration-300 hover:bg-black/[0.025]"
+              className="group block border-b border-neutral-300 py-8 transition-colors duration-300 hover:bg-black/[0.02]"
             >
 
-              <div className="flex items-start gap-10">
+              <div className="grid grid-cols-[80px_1fr_auto] items-start gap-8">
 
-                <span className="w-10 text-sm text-neutral-400">
+                <Metadata>
                   {experiment.id}
-                </span>
+                </Metadata>
 
                 <div>
 
-                  <h2 className="text-2xl font-medium">
+                  <Heading>
                     {experiment.title}
-                  </h2>
+                  </Heading>
 
-                  <p className="mt-2 text-neutral-500">
-                    {experiment.description}
-                  </p>
+                  <div className="mt-2">
+
+                    <Body>
+                      {experiment.description}
+                    </Body>
+
+                  </div>
 
                 </div>
 
-              </div>
+                <div className="flex items-center gap-5">
 
-              <div className="flex items-center gap-5">
+                  <Metadata>
+                    {experiment.status}
+                  </Metadata>
 
-                <span className="text-sm uppercase tracking-widest text-neutral-400">
-                  {experiment.status}
-                </span>
+                  <div className="h-px w-0 bg-black transition-all duration-300 group-hover:w-12" />
 
-                <div className="h-px w-0 bg-black transition-all duration-300 group-hover:w-10" />
+                </div>
 
               </div>
 
@@ -119,9 +148,9 @@ export default function Playground() {
 
           ))}
 
-        </div>
+        </section>
 
-      </div>
-    </main>
+      </main>
+    </Paper>
   );
 }

@@ -6,14 +6,14 @@ type Props = {
   className?: string;
 };
 
-export default function Paper({
+export default function Moss({
   children,
   className = "",
 }: Props) {
   return (
     <MaterialSurface
-      background={colors.paper}
-      foreground={colors.carbon}
+      background={colors.moss}
+      foreground={colors.paper}
       className={className}
     >
       {children}

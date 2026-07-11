@@ -1,20 +1,20 @@
 import MaterialSurface from "./MaterialSurface";
-import { colors } from "@/design-system/colors";
 
 type Props = {
   children?: React.ReactNode;
   className?: string;
 };
 
-export default function Paper({
+export default function Glass({
   children,
   className = "",
 }: Props) {
   return (
     <MaterialSurface
-      background={colors.paper}
-      foreground={colors.carbon}
-      className={className}
+      background="rgba(255,255,255,.18)"
+      foreground="#1F201D"
+      ribs
+      className={`backdrop-blur-md border border-white/30 ${className}`}
     >
       {children}
     </MaterialSurface>
