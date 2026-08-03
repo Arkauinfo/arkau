@@ -1,6 +1,6 @@
 export const colors = {
 
-  paper: "#F5F2EA",
+  paper: "#f2f7f0",
 
   canvas: "#e0d9c9",
 
