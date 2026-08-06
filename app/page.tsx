@@ -44,15 +44,6 @@ export default function Home() {
 
                 Everyday goods. Designed to last.
 
-                <br />
-                
-                A collection of objects and ideas exploring
-                sustainable everyday goods designed to last.
-
-                <br />
-                <br />
-
-
 
               </Body>
 
