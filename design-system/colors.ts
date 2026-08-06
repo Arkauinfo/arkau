@@ -12,7 +12,9 @@ export const colors = {
 
   moss: "#22572b",
 
-  monarch: "#966a23",
+  monarch: "#da4b00",
+  
+  lightmoss: "#56C54B",
 
   bark: "#282c18",
 

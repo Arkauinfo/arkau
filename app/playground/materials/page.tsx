@@ -7,6 +7,7 @@ import Solar from "@/components/materials/Solar";
 import Moss from "@/components/materials/Moss";
 import Monarch from "@/components/materials/Monarch";
 import Bark from "@/components/materials/Bark";
+import LightMoss from "@/components/materials/LightMoss";
 
 import Display from "@/components/typography/Display";
 import Heading from "@/components/typography/Heading";
@@ -100,6 +101,13 @@ export default function MaterialsPage() {
             description="Grounded and tactile."
           >
             <Bark className="h-56 rounded-xl" />
+          </MaterialCard>
+
+          <MaterialCard
+            title="LightMoss"
+            description="Playful."
+          >
+            <LightMoss className="h-56 rounded-xl" />
           </MaterialCard>
 
         </div>
