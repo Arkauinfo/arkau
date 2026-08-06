@@ -29,28 +29,30 @@ export default function Home() {
             <section className="lg:col-span-7">
 
               <Label>
-                ARKAU.STUDIO
+                ARKAU.STUDIO WEBSITE IN PROGRESS...
               </Label>
 
               <div className="mt-6">
 
                 <Display>
-                  Website
-                  <br />
-                  in Progress
+                  Arkau
                 </Display>
 
               </div>
 
               <Body className="mt-10 max-w-xl leading-relaxed">
 
-                A collection of objects, systems, and ideas exploring
+                Everyday goods. Designed to last.
+
+                <br />
+                
+                A collection of objects and ideas exploring
                 sustainable everyday goods designed to last.
 
                 <br />
                 <br />
 
-                The full Arkau website is currently being built.
+
 
               </Body>
 
@@ -68,9 +70,8 @@ export default function Home() {
 
                 <Body className="mt-5">
 
-                  Arkau is an ongoing design practice focused on products,
-                  clothing, furniture, and digital systems that encourage a
-                  more thoughtful relationship with the objects we live with.
+                  We exist to help create a future where personal, communal, and ecological health 
+                  is effortless, simple, and the default way of life.
 
                 </Body>
 
@@ -82,10 +83,15 @@ export default function Home() {
 
                 <Body className="mt-5">
 
-                  For inquiries and previous work:
+                  For inquiries:
+                  <br />
+                  @arkau.studios
+                  arkau.info@gmail.com
+                  <br />
+                  <br />
+                  previous work:
 
                   <br />
-
                   <a
                     href="https://nicklankau.com"
                     className="mt-2 inline-block transition-opacity hover:opacity-60"
