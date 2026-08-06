@@ -14,9 +14,6 @@ export default function GridMotion({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
     let tx = 0;
     let ty = 0;
 
@@ -31,6 +28,10 @@ export default function GridMotion({
     let frame: number;
 
     function animate() {
+      const element = ref.current;
+
+      if (!element) return;
+
       x += (tx - x) * 0.08;
       y += (ty - y) * 0.08;
 
@@ -53,14 +54,12 @@ export default function GridMotion({
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-
       <div
         ref={ref}
         className={`absolute left-1/2 top-1/2 ${className}`}
       >
         {children}
       </div>
-
     </div>
   );
 }
