@@ -38,7 +38,7 @@ const TONES: Record<Bg, Record<string, string>> = {
   bright: {
     "--nav-ink": colors.carbon,
     "--nav-grid": "rgba(255,255,255,0.5)",
-    "--nav-glass": "rgba(240, 248, 241, 0.3)",
+    "--nav-glass": "rgba(255, 255, 240, 0.65)",
     "--nav-brightness": "0.94",
     "--nav-hover": "rgba(31,32,29,0.08)",
     "--nav-active-bg": colors.carbon,
@@ -55,7 +55,7 @@ const TONES: Record<Bg, Record<string, string>> = {
   },
 };
 
-const BLUR = "blur(12px) brightness(var(--nav-brightness))";
+const BLUR = "blur(8px) brightness(var(--nav-brightness))";
 
 function brightnessOf(color: string): number | null {
   const m = color.match(/rgba?\(([^)]+)\)/);

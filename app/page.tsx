@@ -4,6 +4,7 @@ import Canvas from "@/components/materials/Canvas";
 import Paper from "@/components/materials/Paper";
 import EmailSignup from "@/components/EmailSignup";
 import MossOrbit from "@/components/MossOrbit";
+import ParallaxPhoto from "@/components/ParallaxPhoto";
 import CrosshairNodeGrid from "@/components/grid/CrosshairNodeGrid";
 import styles from "./home.module.css";
 
@@ -12,31 +13,50 @@ const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 const micro =
   "font-inter text-[11px] font-extralight uppercase tracking-[0.3em]";
 
+// Same look as `micro`, but the size comes from the stylesheet so it can scale
+// with the screen.
+const microFluid = "font-inter font-extralight uppercase tracking-[0.3em]";
+
 export default function Home() {
   return (
     <Canvas className="min-h-screen">
       <main className="text-[#1F201D]">
         {/* Hero: the world first */}
         <section
-          className={`${styles.dots} relative isolate flex min-h-[70svh] flex-col justify-start overflow-hidden px-6 pb-20 pt-32 sm:px-12 sm:pt-36`}
+          className={`${styles.hero} relative isolate flex flex-col justify-start overflow-hidden px-6 pb-20 pt-32 sm:px-12 sm:pt-36`}
         >
-          <MossOrbit />
+          {/* Moss orbit sits behind everything, including the paper */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-30">
+            <MossOrbit />
+          </div>
 
           <div className="relative">
-            <p className={`${micro} ${styles.step} text-[#22572b]`} style={delay(0)}>
+            <p
+              className={`${microFluid} ${styles.eyebrow} ${styles.step} mt-5 text-[#22572b]`}
+              style={delay(0)}
+            >
               Field note 001 / Arkau Studio
             </p>
 
-            <div className="relative mt-6 max-w-5xl">
-              {/* Crosshair grid, sitting just behind the headline */}
+            {/* The headline's font size scales with the screen (see .headline
+                in home.module.css), and the paper and grid are sized in em, so
+                the whole block grows to reach roughly the middle of the page. */}
+            <div className={`${styles.headline} relative mt-1 w-fit`}>
+              {/* Layer order, back to front: paper, crosshair grid, headline */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute -inset-x-10 -inset-y-12 -z-10 [mask-image:radial-gradient(ellipse_at_center,black_55%,transparent_100%)]"
+                className="pointer-events-none absolute -inset-x-[0.35em] -inset-y-[0.4em] -z-20"
+              >
+                <Paper className="h-full w-full shadow-none!" />
+              </div>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-x-[0.7em] -inset-y-[0.6em] -z-10 [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)]"
               >
                 <CrosshairNodeGrid />
               </div>
 
-              <h1 className="font-alte-haas text-5xl font-normal leading-[0.95] tracking-[-0.04em] text-[#22572b] sm:text-7xl lg:text-8xl">
+              <h1 className="font-alte-haas font-normal leading-[0.95] tracking-[-0.025em] text-[#22572b]">
                 <span className={styles.step} style={delay(150)}>
                   Everyday goods
                 </span>
@@ -48,18 +68,28 @@ export default function Home() {
             </div>
 
             <p
-              className={`${styles.step} font-inter mt-8 max-w-md text-base leading-relaxed text-[#1F201D]/75`}
+              className={`${styles.step} ${styles.lede} font-inter mt-[1.5em] max-w-[22em] leading-relaxed text-[#1F201D]/75`}
               style={delay(750)}
             >
-              Objects from a solarpunk future, 
+              Objects from a solarpunk future,
               <br />
               brought into the present.
             </p>
           </div>
+
+          {/* Photo: stacked under the text on small screens, the right half of
+              the hero from md up. Files live in public/images/ and are
+              referenced WITHOUT "public" in the path. */}
+          <div className={styles.photo}>
+            <ParallaxPhoto
+              src="/images/background-photo.jpg"
+              logo="/images/pentlogo.svg"
+            />
+          </div>
         </section>
 
         {/* Drop list */}
-        <section id="drop-list" className="px-6 pb-24 pt--80 sm:px-2">
+        <section id="drop-list" className="overflow-x-clip px-6 pb-24 pt-20 sm:px-2">
           <Paper className="ml-auto -mr-6 max-w-4xl text-[#1F201D] sm:-mr-12">
             <div className="grid gap-10 p-8 sm:p-12 md:grid-cols-2">
               <div>

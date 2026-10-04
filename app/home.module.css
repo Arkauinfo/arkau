@@ -1,7 +1,51 @@
-/* Hero dot field: same 40px rhythm as GRID_SPACING */
-.dots {
-  background-image: radial-gradient(rgba(31, 32, 29, 0.16) 1px, transparent 1.5px);
-  background-size: 40px 40px;
+/* ---- Hero layout --------------------------------------------------------
+   The headline's size follows the screen width, so the paper block always
+   reaches about the middle of the page. If the paper lands short of or past
+   the midpoint on your screen, nudge the 6.6vw. */
+.hero {
+  min-height: 70svh;
+}
+
+.headline {
+  font-size: clamp(2.75rem, 6.6vw, 30rem);
+}
+
+.eyebrow {
+  font-size: clamp(11px, 0.8vw, 24px);
+}
+
+.lede {
+  font-size: clamp(1rem, 1.25vw, 2.75rem);
+}
+
+/* Photo: stacked under the text on small screens... */
+.photo {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  margin-top: 3rem;
+  aspect-ratio: 4 / 5;
+}
+
+/* ...and the right half of the hero from md up. Same top and bottom spacing
+   as the text column; right spacing grows on large screens. */
+@media (min-width: 768px) {
+  .photo {
+    position: absolute;
+    width: auto;
+    margin-top: 0;
+    aspect-ratio: auto;
+    top: 9rem;
+    bottom: 0rem;
+    left: 60%;
+    right: 3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .photo {
+    right: 6rem;
+  }
 }
 
 /* One orchestrated moment: text uncovers in 10 hard steps, left to right,

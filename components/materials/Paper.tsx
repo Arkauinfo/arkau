@@ -13,7 +13,6 @@ export default function Paper({
   return (
     <MaterialSurface
       background={colors.paper}
-      foreground={colors.carbon}
       className={className}
     >
       {children}
