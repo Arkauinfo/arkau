@@ -4,22 +4,45 @@ import { useState } from "react";
 
 type Status = "idle" | "sending" | "done" | "error";
 
-// Posts to /api/subscribe, which still needs to be built once an email
-// provider is chosen. Until then the form will show the error message.
+// Signups are sent to a Google Apps Script web app that appends each email to
+// a Google Sheet (setup steps in the chat). The URL comes from the
+// NEXT_PUBLIC_SUBSCRIBE_URL environment variable.
+const SUBSCRIBE_URL = process.env.NEXT_PUBLIC_SUBSCRIBE_URL;
+
 export default function EmailSignup() {
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const email = new FormData(e.currentTarget).get("email");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    // Honeypot: real people never fill this hidden field.
+    if (data.get("company")) {
+      setStatus("done");
+      return;
+    }
+
+    if (!SUBSCRIBE_URL) {
+      console.error("NEXT_PUBLIC_SUBSCRIBE_URL is not set.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
     try {
-      const res = await fetch("/api/subscribe", {
+      // no-cors: the browser can't read Google's reply, so "done" means the
+      // request was sent. Check the sheet to confirm rows are arriving.
+      await fetch(SUBSCRIBE_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        mode: "no-cors",
+        body: new URLSearchParams({
+          email: String(data.get("email") ?? ""),
+          source: "homepage",
+        }),
       });
-      setStatus(res.ok ? "done" : "error");
+      setStatus("done");
+      form.reset();
     } catch {
       setStatus("error");
     }
@@ -38,6 +61,14 @@ export default function EmailSignup() {
         autoComplete="email"
         placeholder="you@example.com"
         className="font-inter border-b border-[#1F201D]/50 bg-transparent py-2 text-base outline-none placeholder:text-[#1F201D]/40 focus:border-[#1F201D]"
+      />
+      <input
+        name="company"
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
       <button
         type="submit"
