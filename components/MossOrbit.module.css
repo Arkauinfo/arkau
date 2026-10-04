@@ -1,0 +1,14 @@
+/* Slow clockwise spin. Duration is the knob: higher = slower. */
+.spin {
+  width: 100%;
+  height: 100%;
+  animation: orbit 180s linear infinite;
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin { animation: none; }
+}

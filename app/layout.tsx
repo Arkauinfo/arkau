@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Sans, Geist, Rubik } from "next/font/google";
 import { alteHaas } from "./fonts"
+import Navbar from "@/components/navigation/Navbar";
 import "./globals.css";
 
 const inter = Inter({
@@ -46,6 +47,7 @@ export default function RootLayout({
           antialiased
         `}
       >
+        <Navbar />
         {children}
       </body>
     </html>

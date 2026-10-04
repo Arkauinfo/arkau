@@ -1,0 +1,21 @@
+/* Hero dot field: same 40px rhythm as GRID_SPACING */
+.dots {
+  background-image: radial-gradient(rgba(31, 32, 29, 0.16) 1px, transparent 1.5px);
+  background-size: 40px 40px;
+}
+
+/* One orchestrated moment: text uncovers in 10 hard steps, left to right,
+   like the stepped masks in the moodboard. Delay comes from --d. */
+.step {
+  display: inline-block;
+  clip-path: inset(-10% 100% -10% -2%);
+  animation: stepIn 600ms steps(10, end) var(--d, 0ms) forwards;
+}
+
+@keyframes stepIn {
+  to { clip-path: inset(-10% -2% -10% -2%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step { animation: none; clip-path: none; }
+}
