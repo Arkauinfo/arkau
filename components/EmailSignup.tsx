@@ -79,7 +79,7 @@ export default function EmailSignup() {
         aria-invalid={status === "invalid"}
         aria-describedby="signup-status"
         readOnly={status === "sending"}
-        className="font-inter mt-2 h-14 w-full border border-[#26332b] bg-[#e8e7df]/60 px-4 text-lg placeholder:text-[#26332b]/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#23743f]"
+        className="font-inter mt-2 h-14 w-full border border-[#26332b] bg-[#f8f2e3]/70 px-4 text-lg placeholder:text-[#26332b]/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#23743f]"
       />
       <input
         name="company"

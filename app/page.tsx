@@ -1,12 +1,27 @@
 import EmailSignup from "@/components/EmailSignup";
 import { mono } from "./mono";
-import styles from "./home.module.css";
+
+// Paper: a light tan base with a real texture photo laid over it on "multiply"
+// at 23% opacity (the Framer recipe). To tune: change PAPER for warmth, and
+// the opacity below for texture strength. Swap the file by changing TEXTURE.
+const PAPER = "#efe6d0";
+const TEXTURE = "/images/paper-texture.jpg";
 
 const microText = `${mono.className} text-xs uppercase tracking-[0.04em]`;
 
 export default function Home() {
   return (
-    <div className={`${styles.paper} min-h-screen text-[#26332b]`}>
+    <div
+      className="relative isolate min-h-screen text-[#26332b]"
+      style={{ backgroundColor: PAPER }}
+    >
+      {/* Paper texture: sits under all content, and under the dark section's
+          solid background, so only the light areas show it. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center mix-blend-multiply opacity-[0.23]"
+        style={{ backgroundImage: `url(${TEXTURE})` }}
+      />
       <header className="border-b border-[#26332b]">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 md:px-6 lg:px-10 lg:py-6">
           <p className="font-alte-haas text-[32px] font-bold leading-none tracking-[-0.045em] lg:text-[40px]">
